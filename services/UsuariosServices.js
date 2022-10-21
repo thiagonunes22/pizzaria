@@ -5,6 +5,10 @@ function listar(){
     console.table(usuarios.map(u => `ID : ${u.id} | Nome: ${u.nome} | Email: ${u.email}`))
 }
 
+function listarNomes(){
+console.table(usuarios.map(u => u.nome))
+}
+
 
 function salvar(arrayDeUsuarios){
     fs.writeFileSync('../databases/usuarios.json', JSON.stringify(arrayDeUsuarios,null,4))
@@ -68,4 +72,4 @@ const UsuariosServices = {
 module.exports = UsuariosServices;
 
 listar(usuarios)
-salvar(usuarios)
+listarNomes(usuarios)
