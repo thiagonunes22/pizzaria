@@ -9,10 +9,15 @@ function listarNomes(){
 console.table(usuarios.map(u => u.nome))
 }
 
+function buscar(trecho){
+    // retornar um array com os usuários que tenham nome contendo o trecho buscado
+    // array.filter e includes
+  console.log(usuarios.filter(usuario => usuario.nome.includes(trecho)))
+}
 
 function salvar(arrayDeUsuarios){
-    fs.writeFileSync('../databases/usuarios.json', JSON.stringify(arrayDeUsuarios,null,4))
-    usuarios.push(arrayDeUsuarios)
+    fs.writeFileSync('./databases/usuarios.json', JSON.stringify(arrayDeUsuarios,null,4))
+    //usuarios.push(arrayDeUsuarios)
 }
 
 function cadastrar(objeto){
@@ -57,6 +62,7 @@ function alterarFormaDePagamento(novaFormaDePagamento, posicaoDaFormaDePagamento
 
 const UsuariosServices = {
     cadastrar,
+    salvar,
     listar,
     detalhar,
     remover,
@@ -66,10 +72,8 @@ const UsuariosServices = {
     alteraEndereco: alterarEndereco,
     addFormaDePagamento,
     removerFormaDePagamento,
+    buscar,
     alterarFormaDePagamento
 }
 
 module.exports = UsuariosServices;
-
-listar(usuarios)
-listarNomes(usuarios)
