@@ -1,5 +1,7 @@
 const usuarios = require('../databases/usuarios.json')
 const fs = require('fs')
+const bcrypt = require('bcrypt')
+
 
 function listar(){
     console.table(usuarios.map(u => `ID : ${u.id} | Nome: ${u.nome} | Email: ${u.email}`))
@@ -17,23 +19,50 @@ function buscar(trecho){
 
 function salvar(arrayDeUsuarios){
     fs.writeFileSync('./databases/usuarios.json', JSON.stringify(arrayDeUsuarios,null,4))
-    //usuarios.push(arrayDeUsuarios)
 }
 
 function cadastrar(objeto){
-// Seu código aqui
+let novoId = usuarios[usuarios.length - 1].id + 1
+let senhaCriptografada = bcrypt.hashSync(objeto.senha,10)
+
+let usuario = {
+    id: novoId,
+    nome: objeto.nome,
+    email: objeto.email,
+    senha: senhaCriptografada,
+    enderecos: [objeto.endereco],
+    formasDePagamento: []
+}
+ usuarios.push(usuario)
+ salvar(usuario)
 }
 
 function detalhar(idUsuario){
-// Seu código aqui
+let usuarioDetalhado = usuarios.find(u => u.id == idUsuario)
+console.log(`nome: ${usuarioDetalhado.nome}\n`)
+console.log(`email: ${usuarioDetalhado.email}\n`)
+console.log('Endereços')
+console.table(usuarioDetalhado.enderecos)
+console.log('Formas de Pagamento')
+console.log(usuarioDetalhado.formasDePagamento)
+
 }
 
 function remover(idDoUsuarioParaRemover){
-    // Seu código aqui
+    let arrayRemover = usuarios.filter(u => u.id != idDoUsuarioParaRemover)
+    fs.writeFileSync('./databases/usuarios.json',JSON.stringify(arrayRemover,null,4))
 }
 
 function alterar(novosDados, idUsuario){
-    // Seu código aqui
+    let array = []
+    for(let i = 0; i< usuarios.length; i++){
+        array.push(usuarios[i].id)
+    }
+    array.indexOf(idUsuario)
+    usuarios[array.indexOf(idUsuario)].nome = usuarios.nome
+    usuarios[array.indexOf(idUsuario)].email = usuarios.email
+    usuarios[array.indexOf(idUsuario)].senha = usuarios.senha
+
 }
 
 function addEndereco(novoEndereco, idUsuario){
