@@ -128,6 +128,7 @@ function alterarFormaDePagamento(novaFormaDePagamento, posicaoDaFormaDePagamento
 
 const UsuariosServices = {
     cadastrar,
+    listarNomes,
     salvar,
     listar,
     detalhar,
