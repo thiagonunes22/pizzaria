@@ -1,3 +1,2 @@
-const { detalhar } = require("../UsuariosServices")
-const detalharServices = require("../UsuariosServices")
-detalhar('4')
+const UsuariosServices = require("../UsuariosServices")
+UsuariosServices.detalhar('4')

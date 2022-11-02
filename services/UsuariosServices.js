@@ -66,27 +66,64 @@ function alterar(novosDados, idUsuario){
 }
 
 function addEndereco(novoEndereco, idUsuario){
-    // Seu código aqui
+    let usuarioId = usuarios.find(u=> u.id == idUsuario)
+
+    let posicao = usuarioId.enderecos
+
+    usuarioId.enderecos.push(novoEndereco)
+    salvar(usuarios)
 }
 
 function removerEndereco(posicaoDoEndereco, idUsuario){
 // Seu código aqui
+    let usuarioId = usuarios.find(u => u.id == idUsuario)
+
+    let posicao = usuarioId.enderecos
+
+    posicao.splice(posicaoDoEndereco, 1)
+
+    salvar(usuarios)
+
 }
 
 function alterarEndereco(posicaoDoEndereco, novoEndereco, idUsuario){
-// Seu código aqui        
+    let usuarioId = usuarios.find(u => u.id == idUsuario)
+    
+    let posicao = usuarioId.enderecos
+
+    posicao.splice(posicaoDoEndereco, 1, novoEndereco)
+
+    salvar(usuarios)
 }
 
 function addFormaDePagamento(novaFormaDePagamento, idUsuario){
-    // Seu código aqui
+    let usuarioId = usuarios.find(u => u.id == idUsuario)
+   
+    let posicao = usuarioId.formasDePagamento
+
+    posicao.push(novaFormaDePagamento)
+
+    salvar(usuarios)
 }
 
 function removerFormaDePagamento(posicaoDaFormaDePagamento, idUsuario){
-    // Seu código aqui
+ let usuarioId = usuarios.find(u=> u.id == idUsuario)
+
+ let posicao = usuarioId.formasDePagamento
+
+ posicao.splice(posicaoDaFormaDePagamento, 1)
+
+ salvar(usuarios)
 }
 
 function alterarFormaDePagamento(novaFormaDePagamento, posicaoDaFormaDePagamento, idUsuario){
-    // Seu código aqui
+    let usuarioId = usuarios.find(u => u.id == idUsuario)
+
+    let posicao = usuarioId = usuarioId.formasDePagamento
+
+    posicao.splice(posicaoDaFormaDePagamento, 1, novaFormaDePagamento)
+    
+    salvar(usuarios)
 }
 
 const UsuariosServices = {
